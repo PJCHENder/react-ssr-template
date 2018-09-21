@@ -5,10 +5,11 @@ const renderToString = require('react-dom/server').renderToString;
 const Home = require('./client/components/Home').default;
 
 app.get('/', (req, res) => {
-  const content = renderToString(<HOME />);
+  const content = renderToString(<Home />);
+  console.log('content', content);
   res.send(content);
-})
+});
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
-})
+});
