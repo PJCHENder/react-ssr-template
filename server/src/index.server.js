@@ -1,13 +1,18 @@
 // Entry point for webpack.server.js
 import express from 'express';
 import renderer from '@/helpers/renderer';
+import createStore from '@/helpers/createStore';
 
 const app = express();
 
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-  res.send(renderer(req));
+  const store = createStore();
+
+  // 在這裡要初始化資料並放到 store 中
+
+  res.send(renderer(req, store));
 });
 
 app.listen(3000, () => {
