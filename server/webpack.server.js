@@ -1,5 +1,6 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
+const webpackNodeExternals = require('webpack-node-externals');
 const baseConfig = require('./webpack.base');
 
 const serverConfig = {
@@ -11,7 +12,8 @@ const serverConfig = {
     // output 檔案
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
-  }
+  },
+  externals: [webpackNodeExternals()]       // 如果這個套件可以在 node_modules 中找到，則不要打包到 bundle 檔中
 };
 
 module.exports = webpackMerge(baseConfig, serverConfig);
