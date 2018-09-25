@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
       <title>Document</title>
     </head>
     <body>
-      <div>${content}</div>
+      <div id="root">${content}</div>
 
       <!-- Load client bundle files here -->
       <script src="bundle.js"></script>

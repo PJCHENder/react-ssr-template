@@ -1,3 +1,6 @@
 // Entry point for webpack.client.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Home from './components/Home';
 
-console.log('This is the entry point for webpack.client.js');
+ReactDOM.hydrate(<Home />, document.getElementById('root'));
