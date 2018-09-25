@@ -1,9 +1,16 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import Home from '@/client/components/Home';
+import { StaticRouter } from 'react-router-dom';
+import Routes from '@/client/Routes';
 
-export default () => {
-  const content = renderToString(<Home />);
+// req 這個參數是來自 `index.server.js` 中透過 Express 傳入
+export default (req) => {
+  const content = renderToString(
+    // context 是 StaticRouter 中的必填屬性，一開始先帶空物件給它
+    <StaticRouter location={req.path} context={{}}>
+      <Routes />
+    </StaticRouter>
+  );
 
   const html = `
     <!DOCTYPE html>

@@ -1,6 +1,12 @@
 // Entry point for webpack.client.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './components/Home';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from '@/client/Routes';
 
-ReactDOM.hydrate(<Home />, document.getElementById('root'));
+ReactDOM.hydrate(
+  <BrowserRouter>
+    <Routes/ >
+  </BrowserRouter>,
+  document.getElementById('root')
+);
