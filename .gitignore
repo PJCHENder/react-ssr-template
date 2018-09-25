@@ -74,3 +74,4 @@ typings/
 
 # webpack build output
 server/build
+server/public

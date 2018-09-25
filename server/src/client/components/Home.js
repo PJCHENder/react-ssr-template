@@ -1,9 +1,17 @@
 import React from 'react';
 
 const Home = () => {
+
+  const handleClick = () => {
+    console.log('Hi there!')
+  }
+
   return (
     <div>
-      I'm the home component!
+      <div>
+        I'm the home component!
+      </div>
+      <button onClick={handleClick}>Click Me</button>
     </div>
   )
 }
