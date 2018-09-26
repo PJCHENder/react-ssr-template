@@ -6,10 +6,11 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import Routes from '@/client/Routes';
+import rootReducer from '@/client/reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  reducers,
+  rootReducer,
   {},
   composeEnhancers(applyMiddleware(thunk))
 );
