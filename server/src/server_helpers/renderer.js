@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
 import Routes from '@/client/Routes';
 
 // req 這個參數是來自 `index.server.js` 中透過 Express 傳入
@@ -11,7 +12,9 @@ export default (req, store) => {
     // StaticRouter 中的 context 是必填屬性，一開始先帶空物件給它
     <Provider store={store}>
       <StaticRouter location={req.path} context={{}}>
-        <Routes />
+        <div>
+          {renderRoutes(Routes)}
+        </div>
       </StaticRouter>
     </Provider>
   );
