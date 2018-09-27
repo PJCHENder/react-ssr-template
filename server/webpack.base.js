@@ -9,7 +9,14 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: [['@babel/preset-env',
+              // 因為有用 @babel/polyfill
+              // 設定這個避免整包 polyfill 都被載入
+              {
+                useBuiltIns: 'entry',
+                targets: "> 0.25%, not dead"
+              }
+            ], '@babel/preset-react']
           }
         }
       }

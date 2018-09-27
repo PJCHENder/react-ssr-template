@@ -1,7 +1,7 @@
 // Entry point for webpack.server.js
 import express from 'express';
-import renderer from '@/helpers/renderer';
-import createStore from '@/helpers/createStore';
+import renderer from '@/server_helpers/renderer';
+import createStore from '@/server_helpers/createStore';
 
 const app = express();
 

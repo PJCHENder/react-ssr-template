@@ -9,7 +9,7 @@ class UserList extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchUsers();
+    this.props.fetchUsers();
   }
 
   renderUsers() {
