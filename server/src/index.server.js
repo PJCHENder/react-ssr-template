@@ -10,15 +10,17 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-  const store = createStore();
+  const serverStore = createStore();
 
   // { route } 是 matchRoutes 內會回傳的物件
   // route 內的 loadData 方法則是在 Routes.js 中注入
   const promises = matchRoutes(Routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData() : null;
+    return route.loadData ? route.loadData(serverStore) : null;
   });
 
-  res.send(renderer(req, store));
+  console.log('promises', promises);
+
+  res.send(renderer(req, serverStore));
 });
 
 app.listen(3000, () => {
