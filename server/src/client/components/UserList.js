@@ -36,4 +36,9 @@ const mapStateToProps = state => {
   }
 }
 
+// 這個 function 會透過 Routes.js 傳到 server side 執行
+export const loadData = () => {
+  console.log("I'm trying to load some data.");
+}
+
 export default connect(mapStateToProps, { fetchUsers })(UserList);
