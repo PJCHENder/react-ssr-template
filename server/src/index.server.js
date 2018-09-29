@@ -15,12 +15,13 @@ app.get('*', (req, res) => {
   // { route } 是 matchRoutes 內會回傳的物件
   // route 內的 loadData 方法則是在 Routes.js 中注入
   const promises = matchRoutes(Routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData(serverStore) : null;
+    return route.loadData ? route.loadData(serverStore) : Promise.resolve(null);
   });
 
-  console.log('promises', promises);
-
-  res.send(renderer(req, serverStore));
+  Promise.all(promises).then(() => {
+    // 當所有的 Promise 都 resolve 時才渲染 App
+    res.send(renderer(req, serverStore));
+  })
 });
 
 app.listen(3000, () => {
