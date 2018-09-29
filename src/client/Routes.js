@@ -1,6 +1,6 @@
 // This code base will share with Server and Client
-import Home from '@/client/components/Home';
-import { loadData, default as UserList } from '@/client/components/UserList';
+import HomePage from '@/client/pages/HomePage';
+import UserListPage from '@/client/pages/UserListPage';
 
 // Original Routes
 /*
@@ -12,13 +12,12 @@ import { loadData, default as UserList } from '@/client/components/UserList';
 
 export default [
   {
+    ...HomePage,
     path: '/',
-    component: Home,
     exact: true
   },
   {
-    loadData,
-    path: '/users',
-    component: UserList
+    ...UserListPage,
+    path: '/users'
   }
 ];

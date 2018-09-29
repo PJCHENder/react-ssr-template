@@ -42,4 +42,7 @@ export const loadData = serverStore => {
   return serverStore.dispatch(fetchUsers());
 }
 
-export default connect(mapStateToProps, { fetchUsers })(UserList);
+export default {
+  loadData,
+  component: connect(mapStateToProps, { fetchUsers })(UserList)
+};

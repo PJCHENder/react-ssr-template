@@ -73,5 +73,5 @@ typings/
 .serverless
 
 # webpack build output
-server/build
-server/public
+build/
+public/
