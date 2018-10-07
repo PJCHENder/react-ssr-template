@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
+import serialize from 'serialize-javascript';
 import Routes from '@/client/Routes';
 
 // req 這個參數是來自 `index.server.js` 中透過 Express 傳入
@@ -33,7 +34,7 @@ export default (req, store) => {
 
       <!-- dump redux states fetched by server here -->
       <script>
-        window.INITIAL_STATE = ${JSON.stringify(store.getState())};
+        window.INITIAL_STATE = ${serialize(store.getState())};
       </script>
 
       <!-- Load client bundle files here -->
