@@ -9,7 +9,12 @@ class UserList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUsers();
+
+    // 透過 react-router 進來此路由，而不是直接透過 ssr 渲染此頁時
+    // store 會沒有資料，這時才去 fetch
+    if (this.props.users.length === 0) {
+      this.props.fetchUsers();
+    }
   }
 
   renderUsers() {

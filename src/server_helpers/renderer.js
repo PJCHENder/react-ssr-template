@@ -31,6 +31,11 @@ export default (req, store) => {
     <body>
       <div id="root">${content}</div>
 
+      <!-- dump redux states fetched by server here -->
+      <script>
+        window.INITIAL_STATE = ${JSON.stringify(store.getState())};
+      </script>
+
       <!-- Load client bundle files here -->
       <script src="bundle.js"></script>
     </body>
