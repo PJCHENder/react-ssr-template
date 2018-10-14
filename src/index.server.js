@@ -23,7 +23,7 @@ app.use(
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-  const serverStore = createStore();
+  const serverStore = createStore(req);
 
   // { route } 是 matchRoutes 內會回傳的物件
   // route 內的 loadData 方法則是在 Routes.js 中注入
