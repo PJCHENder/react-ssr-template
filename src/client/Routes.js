@@ -1,6 +1,7 @@
 // This code base will share with Server and Client
+import App from '@/client/App.js';
 import HomePage from '@/client/pages/HomePage';
-import UserListPage from '@/client/pages/UserListPage';
+import UserListPage from '@/client/pages/UserListPage';   // 裡面包含 loadData 的方法
 
 // Original Routes
 /*
@@ -10,14 +11,19 @@ import UserListPage from '@/client/pages/UserListPage';
 </div>
 */
 
-export default [
-  {
-    ...HomePage,
-    path: '/',
-    exact: true
-  },
-  {
-    ...UserListPage,
-    path: '/users'
-  }
-];
+// 建立 nested routes
+// 不論路由為何，都會渲染 App 這個元件
+export default [{
+  ...App,
+  routes: [
+    {
+      ...HomePage,
+      path: '/',
+      exact: true
+    },
+    {
+      ...UserListPage,
+      path: '/users'
+    }
+  ]
+}];
