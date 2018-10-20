@@ -2,6 +2,7 @@
 import App from '@/client/App.js';
 import HomePage from '@/client/pages/HomePage';
 import UserListPage from '@/client/pages/UserListPage';   // 裡面包含 loadData 的方法
+import AdminListPage from '@/client/pages/AdminListPage';
 import NotFoundPage from '@/client/pages/404';
 
 // Original Routes
@@ -25,6 +26,10 @@ export default [{
     {
       ...UserListPage,
       path: '/users'
+    },
+    {
+      ...AdminListPage,
+      path: '/admins'
     },
     {
       ...NotFoundPage
