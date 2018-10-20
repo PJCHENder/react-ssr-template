@@ -1,18 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { vhcenter } from '@/stylesheets/utils';
 
 const Home = () => {
 
-  const wrapperStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 'calc(100vh - 64px)'
-  }
-
   return (
-    <div style={wrapperStyle}>
+    <div style={vhcenter}>
       <h3>Welcome</h3>
       <p>check out these awesome features</p>
     </div>
