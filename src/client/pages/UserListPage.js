@@ -20,16 +20,16 @@ class UserList extends React.Component {
   renderUsers() {
     return this.props.users.map(user => {
       return (
-        <li key={user.id}>{user.name}</li>
+        <li className="collection-item" key={user.id}>{user.name}</li>
       )
     })
   }
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h5>Here is big list of users</h5>
-        <ul>{this.renderUsers()}</ul>
+        <ul className="collection">{this.renderUsers()}</ul>
       </div>
     )
   }

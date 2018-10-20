@@ -3,19 +3,18 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-  const handleClick = () => {
-    console.log('Hi there!')
+  const wrapperStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 'calc(100vh - 64px)'
   }
 
   return (
-    <div>
-      <div>
-        I'm the home component!
-      </div>
-      <button onClick={handleClick}>Click Me</button>
-      <Link to="/users">
-        Users
-      </Link>
+    <div style={wrapperStyle}>
+      <h3>Welcome</h3>
+      <p>check out these awesome features</p>
     </div>
   )
 }
