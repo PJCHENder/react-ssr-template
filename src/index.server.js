@@ -32,8 +32,15 @@ app.get('*', (req, res) => {
   });
 
   Promise.all(promises).then(() => {
+    const context = {};
+    const content = renderer(req, serverStore, context);
+
+    if (context.notFound) {
+      res.status(404)
+    }
+
     // 當所有的 Promise 都 resolve 時才渲染 App
-    res.send(renderer(req, serverStore));
+    res.send(content);
   });
 });
 
