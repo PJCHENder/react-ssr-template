@@ -8,6 +8,7 @@ import Routes from '@/client/Routes';
 
 // req 這個參數是來自 `index.server.js` 中透過 Express 傳入
 export default (req, store, context) => {
+
   const content = renderToString(
 
     // StaticRouter 中的 context 是必填屬性，一開始先帶空物件給它

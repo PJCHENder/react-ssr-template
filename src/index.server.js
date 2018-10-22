@@ -23,25 +23,43 @@ app.use(
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
+  // req 帶入 createStore 的目的是讓我們在 createStore.js 中，
+  // 客制化 axios 時，可以自動把 req 中的 cookie 附加到透過 axios 所發送到 api 的請求上
   const serverStore = createStore(req);
 
   // { route } 是 matchRoutes 內會回傳的物件
-  // route 內的 loadData 方法則是在 Routes.js 中注入
-  const promises = matchRoutes(Routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData(serverStore) : Promise.resolve(null);
-  });
+  // route 內的 loadData 方法是寫在各個 components 中，並在 Routes.js 中加以注入
+  // route.loadData 會執行 async function，因此回傳的是 Promise
+  const promises = matchRoutes(Routes, req.path)
+    .map(({ route }) => {
+      return route.loadData ? route.loadData(serverStore) : null;
+    })
+    .map(awaitLoadData => {
+      if (!awaitLoadData) {
+        return;
+      }
+
+      // 這個 Promise 會在 awaitLoadData 後才 resolve
+      return new Promise((resolve, reject) => {
+        awaitLoadData.then(resolve).catch(resolve);
+      });
+    });
 
   Promise.all(promises).then(() => {
     const context = {};
     const content = renderer(req, serverStore, context);
 
     if (context.notFound) {
-      res.status(404)
+      res.status(404);
     }
 
     // 當所有的 Promise 都 resolve 時才渲染 App
     res.send(content);
   });
+  // 作者並不建議這種做法，因為這種做法類似告訴使用者 500，但卻不知道實際的錯誤在哪
+  // .catch(reject => {
+  //   res.send('Some thing went wrong');
+  // });
 });
 
 app.listen(3000, () => {
