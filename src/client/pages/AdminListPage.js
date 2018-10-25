@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAdmins } from '@/client/actions';
+import requireAuth from '@/client/components/hocs/requireAuth';
 
 class AdminList extends React.Component {
   constructor(props) {
@@ -26,14 +27,17 @@ class AdminList extends React.Component {
   render() {
     return (
       <div className="container">
-        <h5>Here is <span style={{color: '#ef5350'}}>protected</span> list of Admins</h5>
+        <h5>
+          Here is <span style={{ color: '#ef5350' }}>protected</span> list of
+          Admins
+        </h5>
         <ul className="collection">{this.renderAdmins()}</ul>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ admins }) => ({ admins })
+const mapStateToProps = ({ admins }) => ({ admins });
 
 // loadData 會透過 Routes.js 傳到 server side 執行
 export default {
@@ -41,5 +45,5 @@ export default {
   component: connect(
     mapStateToProps,
     { fetchAdmins }
-  )(AdminList)
+  )(requireAuth(AdminList))
 };
