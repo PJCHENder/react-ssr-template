@@ -49,8 +49,18 @@ app.get('*', (req, res) => {
     const context = {};
     const content = renderer(req, serverStore, context);
 
+    /**
+     * 當沒有 JS（SSR）時，react-router 無法作用，
+     * 因此使用 context 來手動處理需要轉頁的情況
+     */
+    // 沒有符合的路由時（404）
     if (context.notFound) {
       res.status(404);
+    }
+
+    // 沒有驗證卻進入需要驗證的頁面時
+    if (context.notAuth) {
+      res.redirect(301, '/');   // 使用 301 才會自動轉址
     }
 
     // 當所有的 Promise 都 resolve 時才渲染 App
