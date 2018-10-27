@@ -26,13 +26,20 @@ class UserList extends React.Component {
     });
   }
 
+  renderHead() {
+    return (
+      <Helmet>
+        <title>{`Users App (${this.props.users.length})`}</title>
+        <meta property="og:title" content="Users App" />
+      </Helmet>
+    )
+  }
+
   render() {
     return (
       <div className="container">
-        <Helmet>
-          <title>Users App</title>
-          <meta property="og:title" content="Users App" />
-        </Helmet>
+        {this.renderHead()}
+
         <h5>Here is big list of users</h5>
         <ul className="collection">{this.renderUsers()}</ul>
       </div>
