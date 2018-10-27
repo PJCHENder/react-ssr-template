@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { vhcenter } from '@/stylesheets/utils';
 
 
@@ -7,8 +8,18 @@ import { vhcenter } from '@/stylesheets/utils';
 const NotFoundPage = ({ staticContext = {} }) => {
   staticContext.notFound = true;
 
+  function renderHelmet() {
+    return (
+      <Helmet>
+        <title>404 Not Found</title>
+        <meta property="og:title" content="404 Not Found" />
+      </Helmet>
+    )
+  }
+
   return (
     <div style={vhcenter}>
+      {renderHelmet()}
       <h1>Ooops, route not found.</h1>
     </div>
   )
